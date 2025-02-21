@@ -1,14 +1,14 @@
 import { getDistanceAndTime } from "../services/map.service.js";
 
 const BASE_FARE = {
-  auto: 85,
-  car: 105,
+  auto: 70,
+  car: 90,
   moto: 55,
 };
 
 const PER_KM_RATE = {
-  auto: 25,
-  car: 40,
+  auto: 22,
+  car: 27,
   moto: 15,
 };
 
