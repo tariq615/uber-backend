@@ -61,7 +61,7 @@ export function initializeSocket(server) {
       if (!location || !location.ltd || !location.lng) {
         return socket.emit("error", { message: "Invalid location data" });
       }
-      console.log(location, "from socket");
+      // console.log(location, "from socket");
       
       const cap = await captainModel.findByIdAndUpdate(userId, {
         location: {

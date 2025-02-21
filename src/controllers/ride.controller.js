@@ -10,6 +10,7 @@ import {
 import { sendMessageToSocketId } from "../socket.js";
 import { rideModel } from "../models/ride.model.js";
 
+
 const createRide = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -33,11 +34,13 @@ const createRide = asyncHandler(async (req, res) => {
 
     // console.log(pickupCoordinates);
 
-    const captainsInRadius = await getCaptainsInTheRadius(
-      pickupCoordinates.lat,
-      pickupCoordinates.lng,
-      2
-    );
+    // const captainsInRadius = await getCaptainsInTheRadius( ## for radius within 2 km ranges
+    //   pickupCoordinates.lat,
+    //   pickupCoordinates.lng,
+    //   2
+    // );
+
+    const captainsInRadius = await getCaptainsInTheRadius();
 
     const rideData = await rideModel.aggregate([
       {

@@ -50,7 +50,7 @@ export const getDistanceAndTime = async (origin, destination) => {
     const originCoords = `${originResponse.lng},${originResponse.lat}`;
     const destinationCoords = `${destinationResponse.lng},${destinationResponse.lat}`;
     console.log(originCoords, "log", destinationCoords);
-    
+
     const accessToken = process.env.MAPBOX_TOKEN;
 
     // Validate if access token is provided
@@ -133,19 +133,29 @@ export const getAutoCompleteSuggestions = async (input) => {
   }
 };
 
-export const getCaptainsInTheRadius = async (ltd, lng, radius) => {
-  try {
-    const captains = await captainModel.find({
-      location: {
-        $geoWithin: {
-          $centerSphere: [[lng, ltd], radius / 6371], // radius in radians
-        },
-      },
-    }); // Fetch only necessary fields
+// export const getCaptainsInTheRadius = async (ltd, lng, radius) => { // for within 2 km range
+//   try {
+//     const captains = await captainModel.find({
+//       location: {
+//         $geoWithin: {
+//           $centerSphere: [[lng, ltd], radius / 6371], // radius in radians
+//         },
+//       },
+//     }); // Fetch only necessary fields
 
+//     return captains;
+//   } catch (error) {
+//     console.error('Error fetching captains in the radius:', error);
+//     throw new ApiError(500, 'Could not fetch captains in the radius', error);
+//   }
+// };
+
+export const getCaptainsInTheRadius = async () => {
+  try {
+    const captains = await captainModel.find(); // Fetch all captains
     return captains;
   } catch (error) {
-    console.error('Error fetching captains in the radius:', error);
+    console.error("Error fetching captains:", error);
     throw new ApiError(500, 'Could not fetch captains in the radius', error);
   }
 };
